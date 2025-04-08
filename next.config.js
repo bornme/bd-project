@@ -1,9 +1,12 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export", // Static export for GitHub Pages
-  images: { unoptimized: true }, // No server-side image optimization
-  basePath: "/bd-project", // Subpath for project site
-  assetPrefix: "/bd-project/", // Prefix for static assets
+  reactStrictMode: false, // Disable Strict Mode to prevent double rendering
+  images: { unoptimized: true },
+  basePath: process.env.NODE_ENV === "production" ? "/bd-project" : "",
+  assetPrefix: process.env.NODE_ENV === "production" ? "/bd-project/" : "",
 };
+
+if (process.env.NODE_ENV === "production") {
+  nextConfig.output = "export";
+}
 
 module.exports = nextConfig;

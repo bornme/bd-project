@@ -1,64 +1,46 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
-  --border: 30 20% 70%; /* Muted beige */
-  --input: 30 20% 90%; /* Light beige */
-  --ring: 25 40% 60%; /* Soft wood brown */
-  --background: 40 20% 95%; /* Warmer beige (#F5F1E3) */
-  --foreground: 20 30% 30%; /* Medium brown (#5C4033) */
+  --border: 30 20% 70%;
+  --input: 30 20% 90%;
+  --ring: 25 40% 60%;
+  --background: 40 20% 95%;
+  --foreground: 20 00% 50%;
   --lightCream: #FAF0E6;
-  --primary: 25 30% 70%; /* Warm taupe (#D2B48C) */
-  --primary-foreground: 25 40% 20%; /* Dark brown */
-  --secondary: 40 20% 60%; /* Soft clay/sand (#C2B280) */
-  --secondary-foreground: 40 30% 30%; /* Darker sand */
-  --destructive: 0 40% 60%; /* Muted red */
+  --primary: 25 30% 70%;
+  --primary-foreground: 25 40% 20%;
+  --secondary: 40 20% 60%;
+  --secondary-foreground: 40 30% 30%;
+  --destructive: 0 40% 60%;
   --destructive-foreground: 0 40% 30%;
-  --muted: 30 20% 85%; /* Light beige-gray */
+  --muted: 30 20% 85%;
   --muted-foreground: 25 30% 40%;
-  --accent: 25 40% 60%; /* Soft wood brown (#C19A6B) */
+  --accent: 25 40% 60%;
   --accent-foreground: 25 40% 20%;
-  --popover: 60 20% 90%; /* Light beige */
+  --popover: 60 20% 90%;
   --popover-foreground: 25 40% 30%;
-  --card: 30 10% 97%; /* Off-white (#FAF0E6) */
+  --card: 30 10% 97%;
   --card-foreground: 25 40% 20%;
   --radius: 0.5rem;
 }
 
-.dark {
-  --border: 30 20% 60%;
-  --input: 30 20% 80%;
-  --ring: 25 40% 50%;
-  --background: 30 20% 20%;
-  --foreground: 30 40% 90%;
-  --lightCream: #D2D2A8;
-  --primary: 25 30% 60%;
-  --primary-foreground: 25 40% 90%;
-  --secondary: 40 20% 50%;
-  --secondary-foreground: 40 30% 90%;
-  --destructive: 0 40% 50%;
-  --destructive-foreground: 0 40% 90%;
-  --muted: 30 20% 75%;
-  --muted-foreground: 30 30% 80%;
-  --accent: 25 40% 50%;
-  --accent-foreground: 25 40% 90%;
-  --popover: 30 20% 25%;
-  --popover-foreground: 30 40% 90%;
-  --card: 30 20% 20%;
-  --card-foreground: 30 40% 90%;
-}
-
 body {
-  background: hsl(40, 20%, 95%); /* Warmer beige */
+  background: hsl(37, 21%, 88%);
 }
 
-/* Ensure Roboto overrides Barriecito for years */
 .timeline-years {
   font-family: var(--font-roboto), sans-serif !important;
 }
 
-/* Ensure Roboto for birthday card message */
 .birthday-card-message {
   font-family: var(--font-roboto), sans-serif !important;
+}
+
+.timeline-slider {
+  display: flex !important;
+  opacity: 1 !important;
+}
+
+[class*="text-foreground"] {
+  color: hsl(var(--foreground)) !important;
 }

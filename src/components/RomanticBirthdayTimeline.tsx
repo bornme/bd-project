@@ -12,7 +12,7 @@ const imagePlaceholders: { [key: number]: string } = {
   2017: "/images/2017.jpg",
   2018: "/images/2018.jpg",
   2019: "/images/2019.jpg",
-  2020: "/images/><![CDATA[2020.jpg",
+  2020: "/images/2020.jpg",
   2021: "/images/2021.jpg",
   2022: "/images/2022.jpg",
   2023: "/images/2023.jpg",
@@ -62,7 +62,7 @@ const Snowfall: React.FC = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const snowflakes = Array.from({ length: 40 }, () => ({ // Reduced from 120 to 90
+    const snowflakes = Array.from({ length: 80 }, () => ({ // Reduced from 120 to 90
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       color: ["#FFFFFF", "#E0F7FA", "#B3E5FC", "#81D4FA", "#4FC3F7"][
@@ -204,7 +204,8 @@ const RomanticBirthdayTimeline: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center overflow-x-hidden font-Barriecito">
+    
+    <div className="min-h-screen bg-background flex items-center justify-center overflow-x-hidden font-Barriecito ">
       <div className="container w-[95%] max-w-4xl py-8 bg-card rounded-3xl shadow-lg text-center relative">
         <h1 className="text-4xl sm:text-5xl md:text-6xl text-foreground mb-4 font-bold text-shadow-md tracking-wide">
           9 year story in pictures
@@ -292,16 +293,16 @@ const RomanticBirthdayTimeline: React.FC = () => {
             <motion.div
               initial={{ scale: 0, opacity: 0, rotate: -10 }}
               animate={{ scale: 1, opacity: 1, rotate: -5 }}
-              transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+              transition={{ duration: 5, type: "spring", stiffness: 100 , delay: 7 }}
               className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-card p-6 rounded-3xl text-center shadow-2xl border-2 border-secondary backdrop-blur-md w-[90%] max-w-md z-10"
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl text-foreground mb-4 font-bold tracking-wide drop-shadow-md">
-                Happy Birthday!
-                <Sparkles className="inline-block w-6 h-6 ml-2 text-accent animate-pulse" />
-              </h2>
-              <p className="text-base sm:text-lg md:text-xl text-foreground mb-4 font-roboto" style={{ fontFamily: "Roboto, sans-serif" }}>
-                Wishing you a year filled with love, joy, and dreams come true.
-              </p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl text-red-100 mb-4 font-bold tracking-wide drop-shadow-md">
+  Happy Birthday!
+  <Sparkles className="inline-block w-6 h-6 ml-2 text-accent animate-pulse" />
+</h2>
+<p className="text-base sm:text-lg md:text-xl text-red-100 mb-4 font-roboto" style={{ fontFamily: "Roboto, sans-serif" }}>
+  Wishing you a year filled with love, joy, and dreams come true.
+</p>
               <div className="flex items-center justify-center gap-4">
                 <Button
                   variant="outline"
@@ -311,7 +312,7 @@ const RomanticBirthdayTimeline: React.FC = () => {
                 >
                   {isPlayingBirthdayMusic ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
                 </Button>
-                <span className="text-muted-foreground text-base">
+                <span className="text-muted-foreground text-base text-red-100">
                   {isPlayingBirthdayMusic ? "Pause Music" : "Play Music"}
                 </span>
               </div>

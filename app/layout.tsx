@@ -15,7 +15,7 @@ const roboto = Roboto({
 
 export const metadata = {
   title: "Birthday Timeline",
-  description: "A romantic birthday timeline",
+  description: "A 9 year celebrate",
 };
 
 export default function RootLayout({
