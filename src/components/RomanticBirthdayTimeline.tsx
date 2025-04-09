@@ -6,6 +6,7 @@ import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight, Sparkles, Play, Pause } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 // Define imagePlaceholders outside
 const imagePlaceholders: { [key: number]: string } = {
@@ -34,15 +35,19 @@ const ImageContainer = React.memo(({ year }: { year: number }) => {
       onAnimationComplete={(definition) =>
         console.log("Animation completed for year:", year, "with", definition, "at", Date.now())
       }
-      className={cn("w-full rounded-3xl overflow-hidden relative shadow-2xl aspect-[16/9]")}
+      className={cn(
+        "w-[90%] max-w-[640px] mx-auto rounded-3xl overflow-hidden relative shadow-2xl aspect-[4/3] md:aspect-[16/9]"
+      )}
     >
-      <img
+      <Image
         src={imagePlaceholders[year]}
         alt={`Year ${year}`}
+        fill
         className={cn(
-          "w-full h-full object-cover transition-transform duration-300",
+          "object-cover transition-transform duration-300",
           year === 2025 && "hover:scale-110 hover:rotate-6"
         )}
+        priority={year === 2017}
       />
     </motion.div>
   );
@@ -62,7 +67,7 @@ const Snowfall: React.FC = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const snowflakes = Array.from({ length: 80 }, () => ({ // Reduced from 120 to 90
+    const snowflakes = Array.from({ length: 80 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       color: ["#FFFFFF", "#E0F7FA", "#B3E5FC", "#81D4FA", "#4FC3F7"][
@@ -204,19 +209,18 @@ const RomanticBirthdayTimeline: React.FC = () => {
   };
 
   return (
-    
-    <div className="min-h-screen bg-background flex items-center justify-center overflow-x-hidden font-Barriecito ">
-      <div className="container w-[95%] max-w-4xl py-8 bg-card rounded-3xl shadow-lg text-center relative">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl text-foreground mb-4 font-bold text-shadow-md tracking-wide">
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center py-6 sm:py-8 md:py-12 overflow-x-hidden font-Barriecito">
+      <div className="container w-[90%] max-w-[640px] sm:max-w-4xl py-6 sm:py-8 bg-card rounded-3xl shadow-lg text-center relative">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl title-text mb-4 font-bold text-shadow-md tracking-wide">
           9 year story in pictures
         </h1>
 
-        <div className="flex justify-center items-center gap-32 mb-6">
+        <div className="flex justify-center items-center gap-8 sm:gap-16 md:gap-32 mb-4 sm:mb-6">
           <motion.button
             onClick={handlePrevClick}
             disabled={currentYearIndex === 0}
             className={cn(
-              "p-3 rounded-full transition-all duration-300",
+              "p-2 sm:p-3 rounded-full transition-all duration-300",
               "bg-primary hover:bg-primary/80",
               "text-primary-foreground shadow-md hover:shadow-lg",
               "disabled:opacity-50 disabled:cursor-not-allowed"
@@ -225,17 +229,17 @@ const RomanticBirthdayTimeline: React.FC = () => {
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
           >
-            <ChevronLeft className="w-8 h-8" />
+            <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
           </motion.button>
 
           <motion.div whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400, damping: 20 }}>
             <Button
               variant="default"
               size="icon"
-              className="rounded-full w-16 h-16 bg-accent hover:bg-accent/80 text-accent-foreground shadow-lg"
+              className="rounded-full w-12 h-12 sm:w-16 sm:h-16 bg-accent hover:bg-accent/80 text-accent-foreground shadow-lg"
               onClick={isPlayingBackgroundMusic ? pauseBackgroundMusic : playBackgroundMusic}
             >
-              {isPlayingBackgroundMusic ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8" />}
+              {isPlayingBackgroundMusic ? <Pause className="w-6 h-6 sm:w-8 sm:h-8" /> : <Play className="w-6 h-6 sm:w-8 sm:h-8" />}
             </Button>
           </motion.div>
 
@@ -243,7 +247,7 @@ const RomanticBirthdayTimeline: React.FC = () => {
             onClick={handleNextClick}
             disabled={currentYearIndex === years.length - 1}
             className={cn(
-              "p-3 rounded-full transition-all duration-300",
+              "p-2 sm:p-3 rounded-full transition-all duration-300",
               "bg-primary hover:bg-primary/80",
               "text-primary-foreground shadow-md hover:shadow-lg",
               "disabled:opacity-50 disabled:cursor-not-allowed"
@@ -252,18 +256,18 @@ const RomanticBirthdayTimeline: React.FC = () => {
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
           >
-            <ChevronRight className="w-8 h-8" />
+            <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
           </motion.button>
         </div>
 
-        <div className="flex flex-col items-center mb-10 relative">
-          <div className="w-full flex justify-between px-4 relative timeline-years">
+        <div className="flex flex-col items-center mb-8 sm:mb-10 relative">
+          <div className="w-[90%] max-w-[640px] sm:max-w-4xl flex justify-between px-2 sm:px-4 relative timeline-years">
             {years.map((year, index) => (
               <div
                 key={year}
                 className={cn(
-                  "text-foreground text-base sm:text-lg md:text-xl cursor-pointer transition-colors duration-300 relative pt-8",
-                  index === currentYearIndex && "text-secondary font-bold text-2xl drop-shadow-md"
+                  "text-foreground text-sm sm:text-base md:text-lg lg:text-xl cursor-pointer transition-colors duration-300 relative pt-4 sm:pt-6 md:pt-8",
+                  index === currentYearIndex && "text-secondary font-bold text-lg sm:text-xl md:text-2xl drop-shadow-md"
                 )}
                 onClick={() => handleYearClick(year)}
               >
@@ -271,7 +275,7 @@ const RomanticBirthdayTimeline: React.FC = () => {
               </div>
             ))}
           </div>
-          <div className="w-full sm:w-[90%] mt-6">
+          <div className="w-[90%] max-w-[640px] sm:max-w-4xl mt-4 sm:mt-6">
             <Slider
               min={2017}
               max={2025}
@@ -279,12 +283,12 @@ const RomanticBirthdayTimeline: React.FC = () => {
               defaultValue={[2017]}
               value={[years[currentYearIndex]]}
               onValueChange={handleSliderChange}
-              className="w-full"
+              className="w-full timeline-slider"
             />
           </div>
         </div>
 
-        <div className="relative w-full max-w-[720px] mx-auto">
+        <div className="relative w-[90%] max-w-[640px] sm:max-w-4xl mx-auto">
           <AnimatePresence mode="wait">
             <ImageContainer key={`image-${years[currentYearIndex]}`} year={years[currentYearIndex]} />
           </AnimatePresence>
@@ -293,26 +297,26 @@ const RomanticBirthdayTimeline: React.FC = () => {
             <motion.div
               initial={{ scale: 0, opacity: 0, rotate: -10 }}
               animate={{ scale: 1, opacity: 1, rotate: -5 }}
-              transition={{ duration: 5, type: "spring", stiffness: 100 , delay: 7 }}
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-card p-6 rounded-3xl text-center shadow-2xl border-2 border-secondary backdrop-blur-md w-[90%] max-w-md z-10"
+              transition={{ duration: 5, type: "spring", stiffness: 100, delay: 7 }}
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-card p-4 sm:p-6 rounded-3xl text-center shadow-2xl border-2 border-secondary backdrop-blur-md w-[90%] max-w-[360px] sm:max-w-md z-10"
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl text-red-100 mb-4 font-bold tracking-wide drop-shadow-md">
-  Happy Birthday!
-  <Sparkles className="inline-block w-6 h-6 ml-2 text-accent animate-pulse" />
-</h2>
-<p className="text-base sm:text-lg md:text-xl text-red-100 mb-4 font-roboto" style={{ fontFamily: "Roboto, sans-serif" }}>
-  Wishing you a year filled with love, joy, and dreams come true.
-</p>
-              <div className="flex items-center justify-center gap-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-red-100 mb-2 sm:mb-4 font-bold tracking-wide drop-shadow-md">
+                Happy Birthday!
+                <Sparkles className="inline-block w-5 h-5 sm:w-6 sm:h-6 ml-1 sm:ml-2 text-accent animate-pulse" />
+              </h2>
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-red-100 mb-2 sm:mb-4 font-roboto" style={{ fontFamily: "Roboto, sans-serif" }}>
+                Wishing you a year filled with love, joy, and dreams come true.
+              </p>
+              <div className="flex items-center justify-center gap-2 sm:gap-4">
                 <Button
                   variant="outline"
                   size="icon"
                   onClick={isPlayingBirthdayMusic ? pauseBirthdaySong : playBirthdaySong}
-                  className="rounded-full w-10 h-10 bg-secondary/80 hover:bg-secondary text-secondary-foreground"
+                  className="rounded-full w-8 h-8 sm:w-10 sm:h-10 bg-secondary/80 hover:bg-secondary text-secondary-foreground"
                 >
-                  {isPlayingBirthdayMusic ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+                  {isPlayingBirthdayMusic ? <Pause className="w-4 h-4 sm:w-5 sm:h-5" /> : <Play className="w-4 h-4 sm:w-5 sm:h-5" />}
                 </Button>
-                <span className="text-muted-foreground text-base text-red-100">
+                <span className="text-muted-foreground text-sm sm:text-base">
                   {isPlayingBirthdayMusic ? "Pause Music" : "Play Music"}
                 </span>
               </div>

@@ -5,7 +5,7 @@
   --input: 30 20% 90%;
   --ring: 25 40% 60%;
   --background: 40 20% 95%;
-  --foreground: 20 00% 50%;
+  --foreground: 10 10% 40%;
   --lightCream: #FAF0E6;
   --primary: 25 30% 70%;
   --primary-foreground: 25 40% 20%;
@@ -43,4 +43,8 @@ body {
 
 [class*="text-foreground"] {
   color: hsl(var(--foreground)) !important;
+}
+
+.title-text {
+  color: hsl(50, 8%, 55%);
 }
